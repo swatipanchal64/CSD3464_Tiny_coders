@@ -20,7 +20,12 @@ public class LibraryManagementSystem {
             System.out.println("\n--- Library Management System ---");
             System.out.println("1. Display Library Address");
             System.out.println("2. Display Library Staff Information");
-            System.out.println("3. Exit");
+            System.out.println("3. Add Book");
+            System.out.println("4. Display Books");
+            System.out.println("5. Remove Book");
+            System.out.println("6. Search Book");
+            System.out.println("7. Checkout Book");
+            System.out.println("8. Exit");
             System.out.print("Enter your choice: ");
 
             choice = scanner.nextInt();
@@ -33,6 +38,9 @@ public class LibraryManagementSystem {
                     displayLibraryStaffInfo(librarian);
                     break;
                 case 3:
+                    displayLibraryStaffInfo(librarian);
+                    break;
+                case 8:
                     System.out.println("Exiting Library Management System. Goodbye!");
                     break;
                 default:
@@ -55,4 +63,7 @@ public class LibraryManagementSystem {
                 "\nStaff ID: " + librarian.getStaffID() +
                 "\nRole: " + librarian.getRole());
     }
+
+
+
 }
