@@ -38,7 +38,19 @@ public class LibraryManagementSystem {
                     displayLibraryStaffInfo(librarian);
                     break;
                 case 3:
-                    displayLibraryStaffInfo(librarian);
+                    AddBook(library);
+                    break;
+                case 4:
+                    DisplayBooks(library);
+                    break;
+                case 5:
+                    DeleteBook(library);
+                    break;
+                case 6:
+                    SearchBook(library);
+                    break;
+                case 7:
+                    CheckoutBook();
                     break;
                 case 8:
                     System.out.println("Exiting Library Management System. Goodbye!");
@@ -46,7 +58,7 @@ public class LibraryManagementSystem {
                 default:
                     System.out.println("Invalid choice. Please enter a valid option.");
             }
-        } while (choice != 3);
+        } while (choice != 8);
 
         scanner.close();
     }
@@ -64,6 +76,62 @@ public class LibraryManagementSystem {
                 "\nRole: " + librarian.getRole());
     }
 
+    private static void AddBook(Library library) {
 
+        Scanner in = new Scanner(System.in);
+
+        System.out.println("Enter the book details: ");
+
+        System.out.print("Id: ");
+        int id = in.nextInt();
+
+        System.out.print("Name: ");
+        String name = in.next();
+
+        System.out.print("Publish Year: ");
+        int publishYear = in.nextInt();
+
+        System.out.print("Author Name: ");
+        String authorName = in.next();
+
+        System.out.print("Quantity: ");
+        int quantity = in.nextInt();
+
+        System.out.print("Category: ");
+        String category = in.next();
+
+        library.addBook(id, name, publishYear, authorName, quantity, category);
+
+    }
+
+    private static void DisplayBooks(Library library) {
+        library.displayBooks();
+    }
+
+    private static void DeleteBook(Library library) {
+
+        Scanner in = new Scanner(System.in);
+
+        System.out.println("Enter the book id to be removed: ");
+        int id = in.nextInt();
+
+        library.removeBook(id);
+
+    }
+
+    private static void SearchBook(Library library) {
+
+        Scanner in = new Scanner(System.in);
+
+        System.out.println("Search by Id, Name, Publish Year, Author name, Quantity or Category : ");
+        String search = in.nextLine();
+
+        library.searchBook(search);
+
+    }
+
+    private static void CheckoutBook() {
+        System.out.println("Checking out book");
+    }
 
 }

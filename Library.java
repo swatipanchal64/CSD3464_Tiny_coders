@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 public class Library {
     private String address;
@@ -8,6 +9,7 @@ public class Library {
     public Library(String address, List<Librarian> staff) {
         this.address = address;
         this.staff = staff;
+        this.books = new ArrayList<Book>();
     }
 
     // Getter for address
