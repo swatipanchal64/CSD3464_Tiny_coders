@@ -1,58 +1,48 @@
-public class Book {
-    private int id;
-    private String name;
-    private int publishYear;
-    private String authorName;
-
-    private int quantity;
+// Abstract class for Book
+public abstract class Book {
+    private String title;
+    private String author;
     private String category;
+    private int quantity;
 
-    public Book(int id, String name, int publishYear, String authorName, int quantity, String category) {
-        this.id = id;
-        setBook(name, publishYear, authorName, quantity, category);
+    // Constructor, getters, and setters
+
+    public String getTitle() {
+        return title;
     }
 
-    public int getId() {
-        return id;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getName() {
-        return name;
+    public String getAuthor() {
+        return author;
     }
 
-    public int getPublishYear() {
-        return publishYear;
-    }
-
-    public String getAuthorName() {
-        return authorName;
-    }
-
-    public int getQuantity() {
-        return quantity;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getCategory() {
         return category;
     }
 
-    public void setBook(String name, int publishYear, String authorName, int quantity, String category){
-        this.name = name;
-        this.publishYear = publishYear;
-        this.authorName = authorName;
-        this.quantity = quantity;
+    public void setCategory(String category) {
         this.category = category;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", publishYear=" + publishYear +
-                ", authorName='" + authorName + '\'' +
-                ", quantity=" + quantity +
-                ", category='" + category + '\'' +
-                '}';
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String displayBookDetails() {
+        return "\tTitle: " + getTitle() + "\n\t" +
+                "Author: " + getAuthor() + "\n\t" +
+                "Category: " + getCategory() + "\n\t" +
+                "Quantity: " + getQuantity();
     }
 }
