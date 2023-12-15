@@ -1,6 +1,6 @@
 class VIPUser extends User {
-    public VIPUser(String username, int age) {
-        super(username, age, new VIPSubscription());
+    public VIPUser(int id, String username, int age) {
+        super(id, username, age, new VIPSubscription());
     }
 
     @Override

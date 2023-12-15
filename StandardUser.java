@@ -1,6 +1,6 @@
 class StandardUser extends User {
-    public StandardUser(String username, int age) {
-        super(username, age, new BasicSubscription());
+    public StandardUser(int id, String username, int age) {
+        super(id, username, age, new BasicSubscription());
     }
 
     @Override

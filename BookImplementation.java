@@ -5,7 +5,7 @@ public class BookImplementation extends Book implements BookManagement {
     private int bookCount = 0;
 
     @Override
-    public void addBook(String title, String author, String category, int quantity, HashMap additionalAttributes) {
+    public void addBook(int id, String title, String author, String category, int quantity, HashMap additionalAttributes) {
 
         Book book;
 
@@ -20,6 +20,7 @@ public class BookImplementation extends Book implements BookManagement {
             return;
         }
 
+        book.setId(id);
         book.setTitle(title);
         book.setAuthor(author);
         book.setCategory(category);

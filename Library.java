@@ -45,6 +45,9 @@ public class Library extends Branch implements BookManagement {
                     Scanner in = new Scanner(System.in);
                     System.out.println("Enter the book details: ");
 
+                    System.out.print("Id: ");
+                    int id = in.nextInt();
+
                     System.out.print("Title: ");
                     String name = in.next();
 
@@ -80,7 +83,7 @@ public class Library extends Branch implements BookManagement {
                         additionalAttributes.put("publisher", in.next());
                     }
 
-                    addBook(name, authorName, category, quantity, additionalAttributes);
+                    addBook(id, name, authorName, category, quantity, additionalAttributes);
                     break;
 
                 case 2:
@@ -101,8 +104,8 @@ public class Library extends Branch implements BookManagement {
     }
 
     @Override
-    public void addBook(String title, String author, String category, int quantity, HashMap additionalAttributes) {
-        bookManager.addBook(title, author, category, quantity, additionalAttributes);
+    public void addBook(int id, String title, String author, String category, int quantity, HashMap additionalAttributes) {
+        bookManager.addBook(id, title, author, category, quantity, additionalAttributes);
     }
 
     @Override
@@ -247,6 +250,9 @@ public class Library extends Branch implements BookManagement {
 
             switch (choice) {
                 case 1:
+                    System.out.print("Enter id: ");
+                    int id = scanner.nextInt();
+
                     System.out.print("Enter username: ");
                     String username = scanner.next();
 
@@ -258,9 +264,9 @@ public class Library extends Branch implements BookManagement {
 
                     User user;
                     if (subscriptionType.equalsIgnoreCase("Basic")) {
-                        user = new StandardUser(username, age);
+                        user = new StandardUser(id, username, age);
                     } else if (subscriptionType.equalsIgnoreCase("VIP")) {
-                        user = new VIPUser(username, age);
+                        user = new VIPUser(id, username, age);
                     } else {
                         System.out.println("Invalid subscription type.");
                         continue;

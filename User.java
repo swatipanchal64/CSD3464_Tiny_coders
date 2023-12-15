@@ -1,10 +1,13 @@
 abstract class User implements UserPermission, Subscription {
+
+    protected int id;
     protected String username;
     protected int age;
 
     protected Subscription subscription;
 
-    public User(String username, int age, Subscription subscription) {
+    public User(int id, String username, int age, Subscription subscription) {
+        this.id = id;
         this.username = username;
         this.age = age;
         this.subscription = subscription;
@@ -22,8 +25,9 @@ abstract class User implements UserPermission, Subscription {
 
     @Override
     public String toString() {
-        return "Username=" + username + "\n\t" +
-                "age=" + age + "\n" +
+        return "UserId:" + id + "\n\t" +
+               "Username:" + username + "\n\t" +
+               "Age:" + age + "\n" +
                 subscription;
     }
 }

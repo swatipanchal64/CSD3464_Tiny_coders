@@ -1,11 +1,19 @@
 // Abstract class for Book
 public abstract class Book {
+
+    private int id;
     private String title;
     private String author;
     private String category;
     private int quantity;
 
-    // Constructor, getters, and setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
@@ -40,7 +48,8 @@ public abstract class Book {
     }
 
     public String displayBookDetails() {
-        return "\tTitle: " + getTitle() + "\n\t" +
+        return "\tId: " + getId() + "\n\t" +
+                "Title: " + getTitle() + "\n\t" +
                 "Author: " + getAuthor() + "\n\t" +
                 "Category: " + getCategory() + "\n\t" +
                 "Quantity: " + getQuantity();

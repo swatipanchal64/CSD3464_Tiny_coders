@@ -21,7 +21,7 @@ class BasicSubscription implements Subscription {
 
     @Override
     public String toString() {
-        return "BasicSubscription\n\t" +
+        return "\tBasicSubscription\n\t" +
                 "Maximum Borrow Limit: " + maxBorrowLimit;
     }
 }

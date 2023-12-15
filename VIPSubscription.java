@@ -23,7 +23,7 @@ class VIPSubscription implements Subscription {
 
     @Override
     public String toString() {
-        return "VIP Subscription Details:\n\t" +
+        return "\tVIP Subscription Details:\n\t" +
                 "subscriptionType='" + subscriptionType + "\n\t" +
                 "Maximum Borrow Limit: " + maxBorrowLimit + "\n\t"+
                 "Access to E-Books: " + (accessToEBooks ? "Yes" : "No");
