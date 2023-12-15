@@ -6,10 +6,13 @@ import java.util.Scanner;
 public class Library extends Branch implements BookManagement {
     private List<Librarian> staff;
     private BookManagement bookManager;
+    private UserManager userManager;
+
     public Library(String branchName, String address, String phoneNumber) {
         super(branchName, address, phoneNumber);
         this.bookManager = new BookImplementation();
         this.staff = new ArrayList<>();
+        this.userManager = new UserManager();
     }
 
     // Additional method for displaying branch details
@@ -110,11 +113,6 @@ public class Library extends Branch implements BookManagement {
     @Override
     public void displayBooks() {
         bookManager.displayBooks();
-    }
-
-    @Override
-    public void manageUsers() {
-        System.out.println("Manage Users");
     }
 
     @Override
@@ -229,6 +227,60 @@ public class Library extends Branch implements BookManagement {
             System.out.println("Librarian deleted successfully!");
         } else {
             System.out.println("Librarian with the given Staff ID not found.");
+        }
+    }
+
+    @Override
+    public void manageUsers() {
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+
+            System.out.println("\n------------User Management-------------");
+            System.out.println("1. Add User");
+            System.out.println("2. Display Users");
+            System.out.println("3. Remove User");
+            System.out.println("4. Return to main menu");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter username: ");
+                    String username = scanner.next();
+
+                    System.out.print("Enter subscription type (Basic/VIP): ");
+                    String subscriptionType = scanner.next();
+
+                    System.out.print("Enter age: ");
+                    int age = scanner.nextInt();
+
+                    User user;
+                    if (subscriptionType.equalsIgnoreCase("Basic")) {
+                        user = new StandardUser(username, age);
+                    } else if (subscriptionType.equalsIgnoreCase("VIP")) {
+                        user = new VIPUser(username, age);
+                    } else {
+                        System.out.println("Invalid subscription type.");
+                        continue;
+                    }
+
+                    userManager.addUser(user);
+                    break;
+                case 2:
+                    userManager.displayUsers();
+                    break;
+                case 3:
+                    System.out.print("Enter username to remove: ");
+                    String usernameToRemove = scanner.next();
+                    userManager.removeUser(usernameToRemove);
+                    break;
+                case 4:
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+            }
         }
     }
 
