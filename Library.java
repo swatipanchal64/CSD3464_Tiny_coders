@@ -1,12 +1,15 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class Library extends Branch implements BookManagement {
-    private Staff librarian;
+    private List<Librarian> staff;
     private BookManagement bookManager;
     public Library(String branchName, String address, String phoneNumber) {
         super(branchName, address, phoneNumber);
         this.bookManager = new BookImplementation();
+        this.staff = new ArrayList<>();
     }
 
     // Additional method for displaying branch details
@@ -95,16 +98,6 @@ public class Library extends Branch implements BookManagement {
     }
 
     @Override
-    public void manageUsers() {
-        System.out.println("Manage Users");
-    }
-
-    @Override
-    public void manageStaff() {
-        System.out.println("Manage Staff");
-    }
-
-    @Override
     public void addBook(String title, String author, String category, int quantity, HashMap additionalAttributes) {
         bookManager.addBook(title, author, category, quantity, additionalAttributes);
     }
@@ -118,4 +111,125 @@ public class Library extends Branch implements BookManagement {
     public void displayBooks() {
         bookManager.displayBooks();
     }
+
+    @Override
+    public void manageUsers() {
+        System.out.println("Manage Users");
+    }
+
+    @Override
+    public void manageStaff() {
+        int choice;
+        Scanner scanner = new Scanner(System.in);
+
+        do {
+            System.out.println("\n\nStaff Management:");
+            System.out.println("1. Add Library Staff Info");
+            System.out.println("2. Display Library Staff Information");
+            System.out.println("3. Update Librarian Information");
+            System.out.println("4. Delete Librarian");
+            System.out.println("5. Return to main menu");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    addLibrarian();
+                    break;
+                case 2:
+                    displayLibraryStaffInfo();
+                    break;
+                case 3:
+                    updateLibrarian();
+                    break;
+                case 4:
+                    deleteLibrarian();
+                    break;
+                case 5:
+                    // Return to main menu
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+            }
+        } while(choice != 5);
+    }
+
+    public void addLibrarian() {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter Librarian Name: ");
+        String librarianName = scanner.next();
+
+        System.out.print("Enter Librarian ID: ");
+        String librarianID = scanner.next();
+
+        System.out.print("Enter Librarian Username: ");
+        String librarianUsername = scanner.next();
+
+        Librarian newLibrarian = new Librarian(librarianName, librarianID, librarianUsername);
+        this.staff.add(newLibrarian);
+
+        System.out.println("Librarian information added successfully!");
+    }
+
+    public void displayLibraryStaffInfo() {
+
+        System.out.println("-------------Library Staff Information-------------");
+
+        for (Librarian librarian : this.staff) {
+            System.out.println("_______________________");
+            System.out.println("Librarian Name: " + librarian.getName() +
+                    "\nStaff ID: " + librarian.getStaffID() +
+                    "\nRole: " + librarian.getRole());
+        }
+
+    }
+
+    public Librarian findLibrarianByStaffID(String staffID) {
+        for (Librarian librarian : this.staff) {
+            if (librarian.getStaffID().equals(staffID)) {
+                return librarian;
+            }
+        }
+        return null;
+    }
+
+    public void updateLibrarian() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter Librarian Staff ID to update: ");
+        String staffIDToUpdate = scanner.next();
+
+        // Find the librarian with the given staff ID
+        Librarian librarianToUpdate = findLibrarianByStaffID(staffIDToUpdate);
+
+        if (librarianToUpdate != null) {
+            System.out.print("Enter new Librarian Name: ");
+            String updatedLibrarianName = scanner.next();
+            librarianToUpdate.setName(updatedLibrarianName);
+            System.out.println("Librarian information updated successfully!");
+        } else {
+            System.out.println("Librarian with the given Staff ID not found.");
+        }
+    }
+
+    //Function to delete Librarian
+    public void deleteLibrarian() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter Librarian Staff ID to delete: ");
+        String staffIDToDelete = scanner.next();
+
+        // Find the librarian with the given staff ID
+        Librarian librarianToDelete = findLibrarianByStaffID(staffIDToDelete);
+
+        if (librarianToDelete != null) {
+            this.staff.remove(librarianToDelete);
+            System.out.println("Librarian deleted successfully!");
+        } else {
+            System.out.println("Librarian with the given Staff ID not found.");
+        }
+    }
+
 }
