@@ -26,9 +26,9 @@ class UserManager {
         System.out.println("User removed: " + username);
     }
 
-    public User findUser(String username) {
+    public User findUser(int userId) {
         for (User user : users) {
-            if (user.username.equals(username)) {
+            if (user.id == userId) {
                 return user;
             }
         }

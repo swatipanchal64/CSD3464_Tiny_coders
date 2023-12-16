@@ -5,8 +5,16 @@ class VIPSubscription implements Subscription {
 
     public VIPSubscription() {
         this.subscriptionType = "VIP";
-        this.maxBorrowLimit = 5;
+        this.maxBorrowLimit = 2;
         this.accessToEBooks = true;
+    }
+
+    public int getMaxBorrowLimit() {
+        return maxBorrowLimit;
+    }
+
+    public void setMaxBorrowLimit(int maxBorrowLimit) {
+        this.maxBorrowLimit = maxBorrowLimit;
     }
 
     @Override

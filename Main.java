@@ -14,7 +14,9 @@ public class Main {
             System.out.println("2. Manage Librarians");
             System.out.println("3. Manage Books");
             System.out.println("4. Manage Users");
-            System.out.println("5. Exit");
+            System.out.println("5. Borrow Book");
+            System.out.println("6. Return Book");
+            System.out.println("7. Exit");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
 
@@ -32,12 +34,18 @@ public class Main {
                     library.manageUsers();
                     break;
                 case 5:
+                    library.borrowBook();
+                    break;
+                case 6:
+                    library.returnBook();
+                    break;
+                case 7:
                     System.out.println("Exiting Library Management System. Goodbye!");
                     break;
                 default:
                     System.out.println("Invalid choice. Please enter a valid option.");
             }
-        } while (choice != 5);
+        } while (choice != 7);
 
         scanner.close();
     }

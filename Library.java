@@ -34,9 +34,7 @@ public class Library extends Branch implements BookManagement {
             System.out.println("1. Add Book");
             System.out.println("2. Remove Book");
             System.out.println("3. Display Books");
-//        System.out.println("4. Checkout Book");
-//        System.out.println("5. Return Book");
-            System.out.println("6. Back to Main Menu");
+            System.out.println("4. Back to Main Menu");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
 
@@ -48,39 +46,43 @@ public class Library extends Branch implements BookManagement {
                     System.out.print("Id: ");
                     int id = in.nextInt();
 
+                    in.nextLine();
+
                     System.out.print("Title: ");
-                    String name = in.next();
+                    String name = in.nextLine();
 
                     System.out.print("Author Name: ");
-                    String authorName = in.next();
+                    String authorName = in.nextLine();
 
                     System.out.print("Quantity: ");
                     int quantity = in.nextInt();
 
+                    in.nextLine();
+
                     System.out.print("Category (General/Reference): ");
-                    String category = in.next();
+                    String category = in.nextLine();
 
                     HashMap<String, String> additionalAttributes = new HashMap<String, String>();
 
                     if(category.equalsIgnoreCase("general")) {
                         System.out.print("Genre: ");
-                        additionalAttributes.put("genre", in.next());
+                        additionalAttributes.put("genre", in.nextLine());
 
                         System.out.print("Language: ");
-                        additionalAttributes.put("language", in.next());
+                        additionalAttributes.put("language", in.nextLine());
 
                         System.out.print("Publishing Year: ");
-                        additionalAttributes.put("year", in.next());
+                        additionalAttributes.put("year", in.nextLine());
                     }
                     else {
                         System.out.print("Topic: ");
-                        additionalAttributes.put("topic", in.next());
+                        additionalAttributes.put("topic", in.nextLine());
 
                         System.out.print("Edition: ");
-                        additionalAttributes.put("edition", in.next());
+                        additionalAttributes.put("edition", in.nextLine());
 
                         System.out.print("Publisher: ");
-                        additionalAttributes.put("publisher", in.next());
+                        additionalAttributes.put("publisher", in.nextLine());
                     }
 
                     addBook(id, name, authorName, category, quantity, additionalAttributes);
@@ -88,19 +90,19 @@ public class Library extends Branch implements BookManagement {
 
                 case 2:
                     System.out.print("Enter the title of the book to remove: ");
-                    String removeTitle = scanner.next();
+                    String removeTitle = scanner.nextLine();
                     removeBook(removeTitle);
                     break;
                 case 3:
                     displayBooks();
                     break;
-                case 6:
+                case 4:
                     // Return to main menu
                     break;
                 default:
                     System.out.println("Invalid choice. Please enter a valid option.");
             }
-        } while(choice != 6);
+        } while(choice != 4);
     }
 
     @Override
@@ -116,6 +118,11 @@ public class Library extends Branch implements BookManagement {
     @Override
     public void displayBooks() {
         bookManager.displayBooks();
+    }
+
+    @Override
+    public Book findBook(int id) {
+        return bookManager.findBook(id);
     }
 
     @Override
@@ -160,13 +167,13 @@ public class Library extends Branch implements BookManagement {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter Librarian Name: ");
-        String librarianName = scanner.next();
+        String librarianName = scanner.nextLine();
 
         System.out.print("Enter Librarian ID: ");
-        String librarianID = scanner.next();
+        String librarianID = scanner.nextLine();
 
         System.out.print("Enter Librarian Username: ");
-        String librarianUsername = scanner.next();
+        String librarianUsername = scanner.nextLine();
 
         Librarian newLibrarian = new Librarian(librarianName, librarianID, librarianUsername);
         this.staff.add(newLibrarian);
@@ -200,14 +207,14 @@ public class Library extends Branch implements BookManagement {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter Librarian Staff ID to update: ");
-        String staffIDToUpdate = scanner.next();
+        String staffIDToUpdate = scanner.nextLine();
 
         // Find the librarian with the given staff ID
         Librarian librarianToUpdate = findLibrarianByStaffID(staffIDToUpdate);
 
         if (librarianToUpdate != null) {
             System.out.print("Enter new Librarian Name: ");
-            String updatedLibrarianName = scanner.next();
+            String updatedLibrarianName = scanner.nextLine();
             librarianToUpdate.setName(updatedLibrarianName);
             System.out.println("Librarian information updated successfully!");
         } else {
@@ -220,7 +227,7 @@ public class Library extends Branch implements BookManagement {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter Librarian Staff ID to delete: ");
-        String staffIDToDelete = scanner.next();
+        String staffIDToDelete = scanner.nextLine();
 
         // Find the librarian with the given staff ID
         Librarian librarianToDelete = findLibrarianByStaffID(staffIDToDelete);
@@ -238,26 +245,28 @@ public class Library extends Branch implements BookManagement {
 
         Scanner scanner = new Scanner(System.in);
 
-        while (true) {
-
+        int choice = 0;
+        do {
             System.out.println("\n------------User Management-------------");
             System.out.println("1. Add User");
             System.out.println("2. Display Users");
             System.out.println("3. Remove User");
             System.out.println("4. Return to main menu");
             System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
+            choice = scanner.nextInt();
 
             switch (choice) {
                 case 1:
                     System.out.print("Enter id: ");
                     int id = scanner.nextInt();
 
+                    scanner.nextLine();
+
                     System.out.print("Enter username: ");
-                    String username = scanner.next();
+                    String username = scanner.nextLine();
 
                     System.out.print("Enter subscription type (Basic/VIP): ");
-                    String subscriptionType = scanner.next();
+                    String subscriptionType = scanner.nextLine();
 
                     System.out.print("Enter age: ");
                     int age = scanner.nextInt();
@@ -279,7 +288,7 @@ public class Library extends Branch implements BookManagement {
                     break;
                 case 3:
                     System.out.print("Enter username to remove: ");
-                    String usernameToRemove = scanner.next();
+                    String usernameToRemove = scanner.nextLine();
                     userManager.removeUser(usernameToRemove);
                     break;
                 case 4:
@@ -287,7 +296,44 @@ public class Library extends Branch implements BookManagement {
                 default:
                     System.out.println("Invalid choice. Please enter a valid option.");
             }
+        } while (choice != 4) ;
+    }
+
+    public void borrowBook(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the user id: ");
+        int userId = scanner.nextInt();
+
+        System.out.print("Enter the book id: ");
+        int bookId = scanner.nextInt();
+
+        User userCheckout = userManager.findUser(userId);
+
+        if (userCheckout != null) {
+            userCheckout.borrowBook(bookId, bookManager);
+        } else {
+            System.out.println("User not found: " + bookId);
         }
+    }
+
+    public void returnBook(){
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the user id: ");
+        int userId = scanner.nextInt();
+
+        System.out.print("Enter the book id: ");
+        int bookId = scanner.nextInt();
+
+        User userReturn = userManager.findUser(userId);
+        if (userReturn != null) {
+            userReturn.returnBook(bookId, bookManager);
+        } else {
+            System.out.println("User not found: " + bookId);
+        }
+
     }
 
 }

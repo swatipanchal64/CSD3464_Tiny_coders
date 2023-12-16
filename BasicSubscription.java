@@ -4,7 +4,11 @@ class BasicSubscription implements Subscription {
 
     public BasicSubscription() {
         this.subscriptionType = "Basic";
-        this.maxBorrowLimit = 3;
+        this.maxBorrowLimit = 1;
+    }
+
+    public int getMaxBorrowLimit() {
+        return maxBorrowLimit;
     }
 
     @Override

@@ -1,4 +1,4 @@
 interface UserPermission {
-    void borrowBook(String bookTitle);
-    void returnBook(String bookTitle);
+    void borrowBook(int bookId, BookManagement bookManager);
+    void returnBook(int bookId, BookManagement bookManager);
 }

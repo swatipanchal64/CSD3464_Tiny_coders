@@ -52,4 +52,14 @@ public class BookImplementation extends Book implements BookManagement {
             System.out.println(books[i]);
         }
     }
+
+    public Book findBook(int id) {
+        for (Book book : this.books) {
+            if (book.getId() == id) {
+                return book;
+            }
+        }
+        return null;
+    }
+
 }
