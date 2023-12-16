@@ -1,3 +1,0 @@
-interface Role {
-    String getRole();
-}
