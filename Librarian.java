@@ -1,4 +1,4 @@
-public class Librarian {
+public class Librarian implements Role {
     private String name;
     private String staffID;
     private String role;
